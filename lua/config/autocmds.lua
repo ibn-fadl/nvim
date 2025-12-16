@@ -47,3 +47,15 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end)
   end,
 })
+
+-- FIX KURSOR MERAH (Prioritas Utama)
+-- Memaksa highlight cursor setiap kali colorscheme dimuat/diubah
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_set_hl(0, "Cursor", { bg = "#FF0000", fg = "#000000" })
+    -- Tambahan agar konsisten di mode terminal/tidak aktif
+    vim.api.nvim_set_hl(0, "TermCursor", { bg = "#FF0000", fg = "#000000" })
+    vim.api.nvim_set_hl(0, "CursorNC", { bg = "#FF0000", fg = "#000000" })
+  end,
+})
