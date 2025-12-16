@@ -29,8 +29,8 @@ end
 local function open_left_sidebar()
   local main_win = vim.api.nvim_get_current_win()
   
-  -- 1. Buat Sidebar Kiri (Window Baru)
-  vim.cmd("topleft 40vnew")
+  -- 1. Buat Sidebar Kiri (Window Baru) - Lebar ditambah jadi 45
+  vim.cmd("topleft 45vnew")
   vim.api.nvim_win_set_var(0, "is_left_sidebar", true) -- Tandai window ini
   
   -- == Terminal Atas ==
@@ -57,6 +57,9 @@ local function open_left_sidebar()
   vim.opt_local.relativenumber = false
   vim.opt_local.signcolumn = "no"
   vim.opt_local.foldcolumn = "0"
+
+  -- Resize Terminal Bawah agar memakan ~70% tinggi layar
+  vim.cmd("resize " .. math.floor(vim.o.lines * 0.7))
 
   -- Kembali fokus ke window editing utama (tengah) - Navigasi spesifik akan override ini nanti
   if vim.api.nvim_win_is_valid(main_win) then
