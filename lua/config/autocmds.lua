@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
       local main_win = vim.api.nvim_get_current_win()
 
       -- 1. Buat Sidebar Kiri (Window Baru)
-      vim.cmd("topleft 35vnew")
+      vim.cmd("topleft 40vnew")
       
       -- == Terminal Atas ==
       vim.cmd("terminal")
