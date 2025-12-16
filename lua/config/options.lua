@@ -12,3 +12,5 @@ vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:block-blinkwait700-blinkoff400-blink
 -- Disable relative line numbers (use absolute only)
 vim.opt.relativenumber = false
 vim.opt.number = true
+vim.opt.cursorline = false
+

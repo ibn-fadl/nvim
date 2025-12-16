@@ -20,7 +20,7 @@ return {
         colors.bg_float = pop_bg
         colors.bg_popup = pop_bg
         colors.border = "#ffffff"
-        colors.fg = "#bcbda8"
+        colors.fg = "#d4d6c6"
       end,
 
       -- 2. CONFIG: Highlight Overrides
@@ -29,17 +29,20 @@ return {
         local c = {
           base      = "#0a0a0a",
           black     = "#000000",
-          text      = "#bcbda8",
+          text      = "#d4d6c6",
           white     = "#ffffff",
 
           -- COLOR CONFIG:
-          pink_bright = "#f30974", -- Structs (Terang & Tegak)
-          pink_dark   = "#ab0652", -- Primitives (Gelap & Italic)
+          pink_bright = "#f30974", -- Structs
+          pink_dark   = "#ab0652", -- Primitives
 
-          blue      = "#1ea8fc",
-          cyan      = "#80e5ff",
-          purple    = "#bf84fc",
-          pale      = "#cebbfa",
+          blue      = "#1ea8fc",   -- Keywords
+          purple    = "#d699ff",   -- Brackets/Operators (Lavender)
+
+          -- UPDATE STRING COLOR:
+          string_green = "#bae67e", -- Lime Green (String baru)
+
+          pale      = "#cebbfa",   -- Constants
           grey      = "#505050",
           cursor    = "#FF0000",
         }
@@ -84,46 +87,37 @@ return {
           "Structure",
         }, { fg = c.pink_bright })
 
-        -- 4. Variables & Fields (Sage)
+        -- 4. Variables & Fields (Bright Sage)
         set({
           "Identifier", "@variable", "@variable.parameter",
           "@field", "@property", "@variable.member",
           "@lsp.type.property", "@lsp.type.variable", "@lsp.type.parameter"
         }, { fg = c.text })
 
-        -- 5. Operators & Punctuation (Purple)
+        -- 5. Operators & Punctuation (Lavender)
         set({
           "Operator", "@operator",
           "Delimiter", "@punctuation.delimiter", "@punctuation.bracket"
         }, { fg = c.purple })
 
-        -- 6. Strings (Cyan)
-        set({ "String", "Character" }, { fg = c.cyan })
+        -- 6. Strings (UPDATED -> LIME GREEN #bae67e)
+        set({ "String", "Character" }, { fg = c.string_green })
 
         -- 7. Constants (Pale Purple)
         set({ "Constant", "@constant.builtin" }, { fg = c.pale })
 
 
-        -- === BAGIAN 2: USER INTERFACE (FIXED) ===
+        -- === BAGIAN 2: USER INTERFACE ===
 
         -- 1. Main Background (Seamless #0a0a0a)
-        -- Menambahkan kembali SnacksLayoutNormal, PickerList, dll yang hilang
         set({
-          -- Core Editor
           "Normal", "NormalNC",
           "Terminal", "TermNormal",
           "NeoTreeNormal", "NeoTreeNormalNC", "SideBar", "SideBarNC",
-
-          -- Snacks Components (ALL must be Main BG)
           "SnacksNormal", "SnacksNormalNC",
           "SnacksPickerNormal", "SnacksPickerNormalNC",
-          "SnacksPickerList",       -- FIX: List file di picker
-          "SnacksPickerPreview",    -- FIX: Preview window di picker
-          "SnacksLayoutNormal",     -- FIX: Layout container utama
-          "SnacksDashboardNormal",
-          "SnacksTerminal", "SnacksTerminalNormal",
-
-          -- Telescope (Backup)
+          "SnacksPickerList", "SnacksPickerPreview", "SnacksLayoutNormal",
+          "SnacksDashboardNormal", "SnacksTerminal", "SnacksTerminalNormal",
           "TelescopeNormal", "TelescopeBorder"
         }, { bg = c.base })
 
@@ -133,12 +127,11 @@ return {
           "Pmenu", "PmenuSel", "PmenuSbar", "PmenuThumb"
         }, { bg = c.black })
 
-        -- 3. Separators (Seamless)
+        -- 3. Separators
         set({
           "WinSeparator", "VertSplit", "NeoTreeWinSeparator", "SnacksWinSeparator"
         }, { fg = c.base, bg = c.base })
 
-        -- Border Floating
         hl.FloatermBorder = { bg = c.black, fg = colors.border }
 
         -- 4. Utils

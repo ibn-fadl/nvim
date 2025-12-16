@@ -11,6 +11,11 @@ return {
                 width = 30,
               },
             },
+            win = {
+              input = {
+                window = { border = "none" },
+              },
+            },
           },
         },
       },
