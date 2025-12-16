@@ -26,9 +26,12 @@ vim.api.nvim_create_autocmd("VimEnter", {
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "*",
   callback = function()
-    vim.api.nvim_set_hl(0, "Cursor", { bg = "#FF0000", fg = "#000000" })
-    -- Tambahan agar konsisten di mode terminal/tidak aktif
-    vim.api.nvim_set_hl(0, "TermCursor", { bg = "#FF0000", fg = "#000000" })
-    vim.api.nvim_set_hl(0, "CursorNC", { bg = "#FF0000", fg = "#000000" })
+    local red_cursor = { bg = "#FF0000", fg = "#000000" }
+    vim.api.nvim_set_hl(0, "Cursor", red_cursor)
+    vim.api.nvim_set_hl(0, "TermCursor", red_cursor)
+    vim.api.nvim_set_hl(0, "CursorNC", red_cursor)
+    -- Tambahan untuk mode Insert (seringkali di-handle terpisah oleh terminal emulator/GUI)
+    vim.api.nvim_set_hl(0, "lCursor", red_cursor)
+    vim.api.nvim_set_hl(0, "CursorIM", red_cursor)
   end,
 })
