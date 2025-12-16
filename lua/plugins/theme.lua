@@ -11,8 +11,8 @@ return {
 
       -- 1. CONFIG: Warna Dasar Global
       on_colors = function(colors)
-        local main_bg = "#0a0a0a" -- Abu Gelap
-        local pop_bg  = "#000000" -- Hitam Pekat
+        local main_bg = "#0a0a0a"
+        local pop_bg  = "#000000"
 
         colors.bg = main_bg
         colors.bg_sidebar = main_bg
@@ -36,12 +36,12 @@ return {
           pink_bright = "#f30974", -- Structs
           pink_dark   = "#ab0652", -- Primitives
 
+          -- NEW COLOR:
+          green_lime  = "#bae67e", -- Package Imports/Namespaces (os, fmt, dll)
+
           blue      = "#1ea8fc",   -- Keywords
-          purple    = "#d699ff",   -- Brackets/Operators (Lavender)
-
-          -- UPDATE STRING COLOR:
-          string_green = "#bae67e", -- Lime Green (String baru)
-
+          purple    = "#d699ff",   -- Brackets/Operators
+          cyan      = "#80e5ff",   -- Strings
           pale      = "#cebbfa",   -- Constants
           grey      = "#505050",
           cursor    = "#FF0000",
@@ -61,13 +61,24 @@ return {
           "@keyword", "@keyword.function", "@keyword.import", "@include"
         }, { fg = c.blue, italic = false })
 
-        -- 2. Identifiers: Functions, Packages (White)
+        -- 2. Identifiers: Functions, Methods (White)
+        -- NOTE: @module dan @namespace dipindahkan dari sini agar bisa jadi hijau
         set({
           "Function", "@function", "@function.call", "@method", "@constructor",
-          "Title", "@module", "@namespace"
+          "Title",
+          -- FIX: Memaksa DEFINISI package (package main) tetap Putih
+          "@lsp.typemod.namespace.declaration",
         }, { fg = c.white, bold = false })
 
-        -- 3a. BUILT-IN TYPES (PRIMITIVE -> DARK PINK & ITALIC)
+        -- 3. IMPORTED PACKAGES / NAMESPACES (Lime Green #bae67e) -> NEW
+        -- Ini akan mewarnai 'os' di os.Exit, 'fmt' di fmt.Println
+        set({
+          "@module",
+          "@namespace",
+          "@lsp.type.namespace",
+        }, { fg = c.green_lime })
+
+        -- 4a. BUILT-IN TYPES (PRIMITIVE -> DARK PINK & ITALIC)
         set({
           "Type",
           "@type.builtin",
@@ -76,7 +87,7 @@ return {
           "@lsp.typemod.builtin.defaultLibrary",
         }, { fg = c.pink_dark, italic = true })
 
-        -- 3b. USER DEFINED TYPES (STRUCTS -> BRIGHT PINK)
+        -- 4b. USER DEFINED TYPES (STRUCTS -> BRIGHT PINK)
         set({
           "@type",
           "@type.definition",
@@ -87,23 +98,23 @@ return {
           "Structure",
         }, { fg = c.pink_bright })
 
-        -- 4. Variables & Fields (Bright Sage)
+        -- 5. Variables & Fields (Bright Sage)
         set({
           "Identifier", "@variable", "@variable.parameter",
           "@field", "@property", "@variable.member",
           "@lsp.type.property", "@lsp.type.variable", "@lsp.type.parameter"
         }, { fg = c.text })
 
-        -- 5. Operators & Punctuation (Lavender)
+        -- 6. Operators & Punctuation (Lavender)
         set({
           "Operator", "@operator",
           "Delimiter", "@punctuation.delimiter", "@punctuation.bracket"
         }, { fg = c.purple })
 
-        -- 6. Strings (UPDATED -> LIME GREEN #bae67e)
-        set({ "String", "Character" }, { fg = c.string_green })
+        -- 7. Strings (Cyan)
+        set({ "String", "Character" }, { fg = c.cyan })
 
-        -- 7. Constants (Pale Purple)
+        -- 8. Constants (Pale Purple)
         set({ "Constant", "@constant.builtin" }, { fg = c.pale })
 
 
