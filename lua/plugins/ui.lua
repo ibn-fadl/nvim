@@ -9,10 +9,12 @@ return {
               layout = {
                 position = "right",
                 width = 30,
+                box = "vertical",
+                { win = "list" },
               },
             },
             win = {
-              input = {
+              list = {
                 window = { border = "none" },
               },
             },
