@@ -4,46 +4,19 @@
 -- Add any additional autocmds here
 -- with `vim.api.nvim_create_autocmd`
 
+-- Ensure Snacks Explorer is closed on startup (prevents session restore from keeping it open)
 vim.api.nvim_create_autocmd("VimEnter", {
-  desc = "Auto-open Left Terminal Sidebar",
+  desc = "Close Snacks Explorer on Startup",
   callback = function()
-    -- Gunakan vim.schedule agar dashboard punya waktu untuk load duluan
     vim.schedule(function()
-      -- Cek agar tidak berjalan di git commit atau sesi lazy yang tidak perlu
-      if vim.bo.filetype == "gitcommit" or vim.bo.filetype == "lazy" then return end
-
-      -- Simpan ID window utama (Dashboard/File)
-      local main_win = vim.api.nvim_get_current_win()
-
-      -- 1. Buat Sidebar Kiri (Window Baru)
-      vim.cmd("topleft 40vnew")
-      
-      -- == Terminal Atas ==
-      vim.cmd("terminal")
-      vim.bo.buflisted = false
-      vim.bo.filetype = "terminal"
-      vim.opt_local.winfixwidth = true
-      vim.opt_local.number = false
-      vim.opt_local.relativenumber = false
-      vim.opt_local.signcolumn = "no"
-      vim.opt_local.foldcolumn = "0"
-
-      -- 2. Split Bawah untuk Terminal Kedua
-      vim.cmd("split")
-      
-      -- == Terminal Bawah ==
-      vim.cmd("enew") -- Buffer baru terpisah
-      vim.cmd("terminal")
-      vim.bo.buflisted = false
-      vim.bo.filetype = "terminal"
-      vim.opt_local.winfixwidth = true
-      vim.opt_local.number = false
-      vim.opt_local.relativenumber = false
-      vim.opt_local.signcolumn = "no"
-      vim.opt_local.foldcolumn = "0"
-
-      -- Kembali fokus ke window editing utama (tengah)
-      vim.api.nvim_set_current_win(main_win)
+      local wins = vim.api.nvim_tabpage_list_wins(0)
+      for _, win in ipairs(wins) do
+        local buf = vim.api.nvim_win_get_buf(win)
+        local ft = vim.bo[buf].filetype
+        if ft and string.match(ft, "^snacks_picker_") then
+          vim.api.nvim_win_close(win, true)
+        end
+      end
     end)
   end,
 })

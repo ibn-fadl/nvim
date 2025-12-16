@@ -35,12 +35,13 @@ return {
           -- COLOR CONFIG:
           pink_bright = "#f30974", -- Structs
           pink_dark   = "#ab0652", -- Primitives
+          green_lime  = "#bae67e", -- Imports/Namespaces
 
-          -- NEW COLOR:
-          green_lime  = "#bae67e", -- Package Imports/Namespaces (os, fmt, dll)
+          -- UPDATE:
+          yellow_gold = "#ffd602", -- Brackets/Curly Braces (BARU)
 
           blue      = "#1ea8fc",   -- Keywords
-          purple    = "#d699ff",   -- Brackets/Operators
+          purple    = "#d699ff",   -- Operators
           cyan      = "#80e5ff",   -- Strings
           pale      = "#cebbfa",   -- Constants
           grey      = "#505050",
@@ -61,17 +62,14 @@ return {
           "@keyword", "@keyword.function", "@keyword.import", "@include"
         }, { fg = c.blue, italic = false })
 
-        -- 2. Identifiers: Functions, Methods (White)
-        -- NOTE: @module dan @namespace dipindahkan dari sini agar bisa jadi hijau
+        -- 2. Identifiers: Functions (White)
         set({
           "Function", "@function", "@function.call", "@method", "@constructor",
           "Title",
-          -- FIX: Memaksa DEFINISI package (package main) tetap Putih
           "@lsp.typemod.namespace.declaration",
         }, { fg = c.white, bold = false })
 
-        -- 3. IMPORTED PACKAGES / NAMESPACES (Lime Green #bae67e) -> NEW
-        -- Ini akan mewarnai 'os' di os.Exit, 'fmt' di fmt.Println
+        -- 3. IMPORTED PACKAGES (Lime Green)
         set({
           "@module",
           "@namespace",
@@ -105,11 +103,18 @@ return {
           "@lsp.type.property", "@lsp.type.variable", "@lsp.type.parameter"
         }, { fg = c.text })
 
-        -- 6. Operators & Punctuation (Lavender)
+        -- 6a. Operators & Delimiters (Lavender/Purple)
+        -- Operator (+, -, *, =, :=) dan Delimiter (, ;) tetap ungu
         set({
           "Operator", "@operator",
-          "Delimiter", "@punctuation.delimiter", "@punctuation.bracket"
+          "Delimiter", "@punctuation.delimiter"
         }, { fg = c.purple })
+
+        -- 6b. Brackets / Kurung (UPDATED -> YELLOW GOLD #ffd602)
+        -- Ini mencakup { }, ( ), [ ]
+        set({
+          "@punctuation.bracket",
+        }, { fg = c.yellow_gold })
 
         -- 7. Strings (Cyan)
         set({ "String", "Character" }, { fg = c.cyan })
@@ -120,7 +125,7 @@ return {
 
         -- === BAGIAN 2: USER INTERFACE ===
 
-        -- 1. Main Background (Seamless #0a0a0a)
+        -- 1. Main Background
         set({
           "Normal", "NormalNC",
           "Terminal", "TermNormal",
@@ -132,7 +137,7 @@ return {
           "TelescopeNormal", "TelescopeBorder"
         }, { bg = c.base })
 
-        -- 2. Floating Background (Black #000000)
+        -- 2. Floating Background
         set({
           "Floaterm", "NormalFloat",
           "Pmenu", "PmenuSel", "PmenuSbar", "PmenuThumb"

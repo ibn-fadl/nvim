@@ -63,6 +63,61 @@ end, { desc = "Focus File Explorer" })
 
 -- == Global Escape Mapping ==
 
+-- Toggle Left Sidebar (Terminal)
+_G.toggle_left_sidebar = function()
+  local found_sidebar = false
+  -- Cek apakah sidebar sudah terbuka (cari window dengan variabel khusus)
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local success, is_sidebar = pcall(vim.api.nvim_win_get_var, win, "is_left_sidebar")
+    if success and is_sidebar then
+      vim.api.nvim_win_close(win, true)
+      found_sidebar = true
+    end
+  end
+
+  -- Jika ditemukan dan ditutup, selesai (Toggle OFF)
+  if found_sidebar then return end
+
+  -- Jika tidak ada, buat baru (Toggle ON)
+  local main_win = vim.api.nvim_get_current_win()
+  
+  -- 1. Buat Sidebar Kiri (Window Baru)
+  vim.cmd("topleft 40vnew")
+  vim.api.nvim_win_set_var(0, "is_left_sidebar", true) -- Tandai window ini
+  
+  -- == Terminal Atas ==
+  vim.cmd("terminal")
+  vim.bo.buflisted = false
+  vim.bo.filetype = "terminal"
+  vim.opt_local.winfixwidth = true
+  vim.opt_local.number = false
+  vim.opt_local.relativenumber = false
+  vim.opt_local.signcolumn = "no"
+  vim.opt_local.foldcolumn = "0"
+
+  -- 2. Split Bawah untuk Terminal Kedua
+  vim.cmd("split")
+  vim.api.nvim_win_set_var(0, "is_left_sidebar", true) -- Tandai window ini
+  
+  -- == Terminal Bawah ==
+  vim.cmd("enew") -- Buffer baru terpisah
+  vim.cmd("terminal")
+  vim.bo.buflisted = false
+  vim.bo.filetype = "terminal"
+  vim.opt_local.winfixwidth = true
+  vim.opt_local.number = false
+  vim.opt_local.relativenumber = false
+  vim.opt_local.signcolumn = "no"
+  vim.opt_local.foldcolumn = "0"
+
+  -- Kembali fokus ke window editing utama (tengah)
+  if vim.api.nvim_win_is_valid(main_win) then
+    vim.api.nvim_set_current_win(main_win)
+  end
+end
+
+map("n", "<leader>t", function() _G.toggle_left_sidebar() end, { desc = "Toggle Left Sidebar" })
+
 -- Menggunakan string literal [[...]] untuk menghindari masalah escaping backslash
 -- Ini memetakan Ctrl+[ di mode Terminal untuk keluar ke Normal Mode
 map("t", "<C-[>", [[<C-\><C-n>]], { desc = "Exit Terminal Mode" })
