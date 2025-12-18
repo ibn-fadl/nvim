@@ -28,11 +28,11 @@ end
 
 local function open_left_sidebar()
   local main_win = vim.api.nvim_get_current_win()
-  
+
   -- 1. Buat Sidebar Kiri (Window Baru) - Lebar ditambah jadi 45
   vim.cmd("topleft 45vnew")
   vim.api.nvim_win_set_var(0, "is_left_sidebar", true) -- Tandai window ini
-  
+
   -- == Terminal Atas ==
   vim.cmd("terminal")
   vim.bo.buflisted = false
@@ -46,7 +46,7 @@ local function open_left_sidebar()
   -- 2. Split Bawah untuk Terminal Kedua
   vim.cmd("split")
   vim.api.nvim_win_set_var(0, "is_left_sidebar", true) -- Tandai window ini
-  
+
   -- == Terminal Bawah ==
   vim.cmd("enew") -- Buffer baru terpisah
   vim.cmd("terminal")
@@ -123,7 +123,7 @@ map("n", "<leader>4", function()
   for _, win in ipairs(wins) do
     local buf = vim.api.nvim_win_get_buf(win)
     local ft = vim.bo[buf].filetype
-    
+
     -- Deteksi filetype khas Snacks Picker
     if ft and string.match(ft, "^snacks_picker_") then
       -- Jika ketemu, HANYA fokus ke sana (jangan ditutup)
