@@ -24,6 +24,7 @@ In the name of Allah, the most Gracious, the most Merciful]],
       picker = {
         sources = {
           explorer = {
+            hidden = true,
             layout = {
               layout = {
                 position = "right",
@@ -37,6 +38,9 @@ In the name of Allah, the most Gracious, the most Merciful]],
                 window = { border = "none" },
               },
             },
+          },
+          files = {
+            hidden = true,
           },
         },
       },
