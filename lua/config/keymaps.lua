@@ -27,8 +27,7 @@ local function is_sidebar_open()
 end
 
 -- Variabel state untuk menyimpan ID buffer terminal
-local term_buf_top = nil
-local term_buf_bottom = nil
+local term_buf = nil
 
 local function open_left_sidebar()
   local main_win = vim.api.nvim_get_current_win()
@@ -37,53 +36,30 @@ local function open_left_sidebar()
   vim.cmd("topleft 45vnew")
   vim.api.nvim_win_set_var(0, "is_left_sidebar", true) -- Tandai window ini
 
-  -- == Terminal Atas ==
-  if term_buf_top and vim.api.nvim_buf_is_valid(term_buf_top) then
+  -- == Terminal ==
+  if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
     -- Gunakan buffer yang sudah ada
-    vim.api.nvim_win_set_buf(0, term_buf_top)
+    vim.api.nvim_win_set_buf(0, term_buf)
   else
     -- Buat terminal baru
     vim.cmd("terminal")
-    term_buf_top = vim.api.nvim_get_current_buf()
-    vim.bo[term_buf_top].bufhidden = "hide" -- PENTING: Jangan kill buffer saat window tutup
-    vim.bo[term_buf_top].buflisted = false
-    vim.bo[term_buf_top].filetype = "terminal"
+    term_buf = vim.api.nvim_get_current_buf()
+    vim.bo[term_buf].bufhidden = "hide" -- PENTING: Jangan kill buffer saat window tutup
+    vim.bo[term_buf].buflisted = false
+    vim.bo[term_buf].filetype = "terminal"
   end
-  
-  -- Konfigurasi tampilan window (selalu terapkan, baik buffer baru atau lama)
+
+  -- Konfigurasi tampilan window
   vim.opt_local.winfixwidth = true
   vim.opt_local.number = false
   vim.opt_local.relativenumber = false
   vim.opt_local.signcolumn = "no"
   vim.opt_local.foldcolumn = "0"
-
-  -- 2. Split Bawah untuk Terminal Kedua
-  vim.cmd("split")
-  vim.api.nvim_win_set_var(0, "is_left_sidebar", true) -- Tandai window ini
-
-  -- == Terminal Bawah ==
-  if term_buf_bottom and vim.api.nvim_buf_is_valid(term_buf_bottom) then
-    -- Gunakan buffer yang sudah ada
-    vim.api.nvim_win_set_buf(0, term_buf_bottom)
-  else
-    -- Buat terminal baru
-    vim.cmd("enew") -- Buffer baru terpisah sebelum :terminal (untuk safety)
-    vim.cmd("terminal")
-    term_buf_bottom = vim.api.nvim_get_current_buf()
-    vim.bo[term_buf_bottom].bufhidden = "hide" -- PENTING: Jangan kill buffer saat window tutup
-    vim.bo[term_buf_bottom].buflisted = false
-    vim.bo[term_buf_bottom].filetype = "terminal"
-  end
-
-  -- Konfigurasi tampilan window bawah
   vim.opt_local.winfixwidth = true
   vim.opt_local.number = false
   vim.opt_local.relativenumber = false
   vim.opt_local.signcolumn = "no"
   vim.opt_local.foldcolumn = "0"
-
-  -- Resize Terminal Bawah agar memakan ~70% tinggi layar
-  vim.cmd("resize " .. math.floor(vim.o.lines * 0.7))
 
   -- Kembali fokus ke window editing utama (tengah) - Navigasi spesifik akan override ini nanti
   if vim.api.nvim_win_is_valid(main_win) then
@@ -109,24 +85,14 @@ end
 
 -- == Window Navigation Customization ==
 
--- <leader>1: Fokus Terminal Bawah (Auto-Open jika tertutup)
--- Logika: Cek sidebar -> Buka jika perlu -> Pindah ke kiri-atas (wincmd t) -> Turun satu (wincmd j)
+-- <leader>1: Fokus Terminal (Auto-Open jika tertutup)
+-- Logika: Cek sidebar -> Buka jika perlu -> Pindah ke kiri-atas (wincmd t)
 map("n", "<leader>1", safe_nav(function()
   if not is_sidebar_open() then
     open_left_sidebar()
   end
   cmd("wincmd t")
-  cmd("wincmd j")
-end), { desc = "Focus Bottom Terminal" })
-
--- <leader>2: Fokus Terminal Atas (Auto-Open jika tertutup)
--- Logika: Cek sidebar -> Buka jika perlu -> Pindah ke kiri-atas (wincmd t)
-map("n", "<leader>2", safe_nav(function()
-  if not is_sidebar_open() then
-    open_left_sidebar()
-  end
-  cmd("wincmd t")
-end), { desc = "Focus Top Terminal" })
+end), { desc = "Focus Terminal" })
 
 -- <leader>3: Fokus Editor Utama (Tengah)
 -- Logika: Pindah ke paling kiri-atas (wincmd t), lalu geser kanan (wincmd l)
