@@ -26,6 +26,10 @@ local function is_sidebar_open()
   return false
 end
 
+-- Variabel state untuk menyimpan ID buffer terminal
+local term_buf_top = nil
+local term_buf_bottom = nil
+
 local function open_left_sidebar()
   local main_win = vim.api.nvim_get_current_win()
 
@@ -34,9 +38,19 @@ local function open_left_sidebar()
   vim.api.nvim_win_set_var(0, "is_left_sidebar", true) -- Tandai window ini
 
   -- == Terminal Atas ==
-  vim.cmd("terminal")
-  vim.bo.buflisted = false
-  vim.bo.filetype = "terminal"
+  if term_buf_top and vim.api.nvim_buf_is_valid(term_buf_top) then
+    -- Gunakan buffer yang sudah ada
+    vim.api.nvim_win_set_buf(0, term_buf_top)
+  else
+    -- Buat terminal baru
+    vim.cmd("terminal")
+    term_buf_top = vim.api.nvim_get_current_buf()
+    vim.bo[term_buf_top].bufhidden = "hide" -- PENTING: Jangan kill buffer saat window tutup
+    vim.bo[term_buf_top].buflisted = false
+    vim.bo[term_buf_top].filetype = "terminal"
+  end
+  
+  -- Konfigurasi tampilan window (selalu terapkan, baik buffer baru atau lama)
   vim.opt_local.winfixwidth = true
   vim.opt_local.number = false
   vim.opt_local.relativenumber = false
@@ -48,10 +62,20 @@ local function open_left_sidebar()
   vim.api.nvim_win_set_var(0, "is_left_sidebar", true) -- Tandai window ini
 
   -- == Terminal Bawah ==
-  vim.cmd("enew") -- Buffer baru terpisah
-  vim.cmd("terminal")
-  vim.bo.buflisted = false
-  vim.bo.filetype = "terminal"
+  if term_buf_bottom and vim.api.nvim_buf_is_valid(term_buf_bottom) then
+    -- Gunakan buffer yang sudah ada
+    vim.api.nvim_win_set_buf(0, term_buf_bottom)
+  else
+    -- Buat terminal baru
+    vim.cmd("enew") -- Buffer baru terpisah sebelum :terminal (untuk safety)
+    vim.cmd("terminal")
+    term_buf_bottom = vim.api.nvim_get_current_buf()
+    vim.bo[term_buf_bottom].bufhidden = "hide" -- PENTING: Jangan kill buffer saat window tutup
+    vim.bo[term_buf_bottom].buflisted = false
+    vim.bo[term_buf_bottom].filetype = "terminal"
+  end
+
+  -- Konfigurasi tampilan window bawah
   vim.opt_local.winfixwidth = true
   vim.opt_local.number = false
   vim.opt_local.relativenumber = false
