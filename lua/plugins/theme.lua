@@ -49,7 +49,7 @@ return {
           cursor    = "#FF0000",
           silver    = "#C0C0C0",
 
-          package_color = "#da70d6",
+          package_color = "#bb9af7",
           string_color  = "#7aa2f7",
           darker_silver = "#B0B0B0",
         }

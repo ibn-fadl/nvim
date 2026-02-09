@@ -15,3 +15,8 @@ vim.opt.number = true
 vim.opt.cursorline = false
 vim.opt.list = false
 
+-- Set Neovim indentation to 4 spaces
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
