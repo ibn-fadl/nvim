@@ -114,6 +114,10 @@ return {
         hl.TelescopeBorder = { fg = c.black }
         hl.NeoTreeFloatBorder = { fg = c.black, bg = c.black }
         hl.FloatBorder = { fg = c.black, bg = c.black }
+        -- Noice.nvim floating command line styling
+        hl.NoiceCmdlinePopupBorder = { fg = c.black, bg = c.black }
+        hl.NoiceCmdlinePopupTitle = { fg = c.white, bg = c.black }
+        hl.NoiceCmdlineIcon = { fg = c.white, bg = c.black }
         hl.LineNr = { fg = c.grey }
         hl.CursorLineNr = { fg = c.white, bold = true }
         hl.Cursor = { bg = c.cursor, fg = c.black }
