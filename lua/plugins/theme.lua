@@ -82,11 +82,11 @@ return {
           "Identifier", "@variable", "@variable.parameter",
           "@field", "@property", "@variable.member",
           "@lsp.type.property", "@lsp.type.variable", "@lsp.type.parameter"
-        }, { fg = c.text })
+        }, { fg = c.white })
 
-        set({ "Operator", "@operator", "Delimiter", "@punctuation.delimiter" }, { fg = c.purple })
-        set({ "@punctuation.bracket" }, { fg = c.silver })
-        set({ "String", "Character" }, { fg = c.cyan })
+        set({ "Operator", "@operator", "Delimiter", "@punctuation.delimiter" }, { fg = c.white })
+        set({ "@punctuation.bracket" }, { fg = c.white })
+        set({ "String", "Character" }, { fg = c.silver })
         set({ "Constant", "@constant.builtin" }, { fg = c.pale })
 
 
