@@ -49,6 +49,7 @@ return {
           grey      = "#505050",
           cursor    = "#FF0000",
           silver    = "#C0C0C0",
+          cyan_blue = "#2cc3df",
 
           package_color = "#7aa2f7",
           string_color  = "#bb9af7",
@@ -93,7 +94,7 @@ return {
         set({ "Operator", "@operator", "Delimiter", "@punctuation.delimiter" }, { fg = c.grey })
         set({ "@punctuation.bracket" }, { fg = c.grey })
         set({ "String", "Character" }, { fg = c.darker_silver })
-        set({ "Constant", "@constant.builtin" }, { fg = c.pale })
+        set({ "Constant", "@constant.builtin", "@variable.builtin" }, { fg = c.darker_silver })
 
 
         -- === BAGIAN 2: USER INTERFACE ===
@@ -130,6 +131,7 @@ return {
         hl.CursorLineNr = { fg = c.white, bold = true }
         hl.Cursor = { bg = c.cursor, fg = c.black }
         hl.Comment = { fg = "#3a4261" }
+        hl.MatchParen = { fg = c.cyan_blue }
 
 
         -- === BAGIAN 3: DASHBOARD ===
