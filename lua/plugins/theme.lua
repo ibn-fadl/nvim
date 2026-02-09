@@ -50,8 +50,8 @@ return {
           cursor    = "#FF0000",
           silver    = "#C0C0C0",
 
-          package_color = "#bb9af7",
-          string_color  = "#7aa2f7",
+          package_color = "#7aa2f7",
+          string_color  = "#bb9af7",
           darker_silver = "#B0B0B0",
         }
 
@@ -90,9 +90,9 @@ return {
           "@lsp.type.property", "@lsp.type.variable", "@lsp.type.parameter"
         }, { fg = c.white })
 
-        set({ "Operator", "@operator", "Delimiter", "@punctuation.delimiter" }, { fg = c.white })
-        set({ "@punctuation.bracket" }, { fg = c.white })
-        set({ "String", "Character" }, { fg = c.string_color })
+        set({ "Operator", "@operator", "Delimiter", "@punctuation.delimiter" }, { fg = c.grey })
+        set({ "@punctuation.bracket" }, { fg = c.grey })
+        set({ "String", "Character" }, { fg = c.darker_silver })
         set({ "Constant", "@constant.builtin" }, { fg = c.pale })
 
 
@@ -142,9 +142,9 @@ return {
         }, { fg = c.white })
 
 
-        -- === BAGIAN 4: VISUAL SELECTION (PINK SAGE) ===
-        -- Menggunakan warna #523646 (Muted Dusty Pink)
-        hl.Visual = { bg = c.pink_sage, fg = c.white }
+        -- === BAGIAN 4: VISUAL SELECTION ===
+        -- Menggunakan warna #333333
+        hl.Visual = { bg = "#333333", fg = c.white }
 
         -- Warna seleksi saat tidak aktif (lebih gelap lagi)
         hl.VisualNOS = { bg = "#33222c", fg = c.grey }
