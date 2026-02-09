@@ -35,3 +35,32 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     vim.api.nvim_set_hl(0, "CursorIM", red_cursor)
   end,
 })
+
+-- Explicitly ensure Normal highlight group has no blend
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    -- These colors are based on the tokyonight.nvim configuration in lua/plugins/theme.lua
+    local bg_color = "#0d0d13" -- main_bg
+    local fg_color = "#d4d6c6" -- colors.fg
+    vim.api.nvim_set_hl(0, "Normal", { bg = bg_color, fg = fg_color, blend = 0 })
+  end,
+  desc = "Ensure Normal highlight group has no blend",
+})
+
+-- Ensure main windows are always opaque (winblend = 0)
+vim.api.nvim_create_autocmd({ "WinNew", "WinClosed", "BufWinEnter" }, {
+  group = vim.api.nvim_create_augroup("ForceOpaqueMainWindows", { clear = true }),
+  callback = function()
+    for _, winid in ipairs(vim.api.nvim_list_wins()) do
+      local buftype = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(winid), "buftype")
+      local is_float = vim.api.nvim_win_get_config(winid).float
+
+      -- Only set winblend for normal buffer windows, not floating windows
+      if buftype == "" and not is_float then
+        vim.api.nvim_win_set_option(winid, "winblend", 0)
+      end
+    end
+  end,
+  desc = "Ensure main editor windows remain opaque",
+})

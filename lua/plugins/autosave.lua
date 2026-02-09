@@ -8,7 +8,7 @@ return {
       message = function()
         return "✓ auto-saved"
       end,
-      dim = 0.4,
+      dim = 0,
       cleaning_interval = 1250,
     },
     trigger_events = { "InsertLeave", "TextChanged" },

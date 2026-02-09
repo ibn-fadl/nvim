@@ -35,6 +35,12 @@ return {
         },
       },
       picker = {
+        backdrop = false,
+        win = {
+          wo = {
+            winblend = 0,
+          },
+        },
         sources = {
           explorer = {
             hidden = true,
@@ -58,6 +64,9 @@ return {
         },
       },
       indent = {
+        enabled = false,
+      },
+      dim = {
         enabled = false,
       },
     },

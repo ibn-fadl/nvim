@@ -4,29 +4,30 @@ return {
     opts = {
       style = "night",
       transparent = false,
+      dim_inactive = false,
       styles = {
-        sidebars = "dark",
-        floats = "dark",
+        sidebars = "transparent",
+        floats = "transparent",
       },
 
       on_colors = function(colors)
-        local main_bg = "#000000"
-        local pop_bg  = "#000000"
+        local main_bg = "#0d0d13"
+        local pop_bg  = "#0d0d13"
         local main_border_color = "#E0E0E0" -- Define local literal for border
 
         colors.bg = main_bg
         colors.bg_sidebar = main_bg
         colors.bg_dark = pop_bg
-        colors.bg_float = pop_bg
-        colors.bg_popup = pop_bg
+
+
         colors.border = main_border_color -- Use local literal
         colors.fg = "#d4d6c6"
       end,
 
       on_highlights = function(hl, colors)
         local c = {
-          base      = "#000000",
-          black     = "#000000",
+          base      = "#0d0d13",
+          black     = "#0d0d13",
           text      = "#d4d6c6",
           white     = "#E0E0E0",
 
@@ -102,14 +103,16 @@ return {
           "SnacksNormal", "SnacksNormalNC",
           "SnacksPickerNormal", "SnacksPickerNormalNC",
           "SnacksPickerList", "SnacksPickerPreview", "SnacksLayoutNormal",
-          "SnacksDashboardNormal", "SnacksTerminal", "SnacksTerminalNormal",
-          "TelescopeNormal", "TelescopeBorder"
+          "SnacksDashboardNormal", "SnacksTerminal", "SnacksTerminalNormal"
         }, { bg = c.base })
+        set({
+          "TelescopeNormal", "TelescopeBorder"
+        }, { bg = "NONE" })
 
         set({
           "Floaterm", "NormalFloat",
           "Pmenu", "PmenuSel", "PmenuSbar", "PmenuThumb"
-        }, { bg = c.black })
+        }, { bg = "NONE" })
 
         set({
           "WinSeparator", "VertSplit", "NeoTreeWinSeparator", "SnacksWinSeparator"
@@ -117,7 +120,7 @@ return {
 
         hl.FloatermBorder = { bg = c.black, fg = colors.border }
         hl.TelescopeBorder = { fg = c.black }
-        hl.NeoTreeFloatBorder = { fg = c.black, bg = c.black }
+        hl.NeoTreeFloatBorder = { fg = c.black, bg = c.base }
         hl.FloatBorder = { fg = c.black, bg = c.black }
         -- Noice.nvim floating command line styling
         hl.NoiceCmdlinePopupBorder = { fg = c.black, bg = c.black }
