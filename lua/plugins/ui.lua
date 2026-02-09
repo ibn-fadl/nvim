@@ -28,7 +28,7 @@ In the name of Allah, the most Gracious, the most Merciful]],
             layout = {
               layout = {
                 position = "right",
-                width = 30,
+                width = 40,
                 box = "vertical",
                 { win = "list" },
               },
