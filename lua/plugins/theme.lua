@@ -12,13 +12,14 @@ return {
       on_colors = function(colors)
         local main_bg = "#000000"
         local pop_bg  = "#000000"
+        local main_border_color = "#E0E0E0" -- Define local literal for border
 
         colors.bg = main_bg
         colors.bg_sidebar = main_bg
         colors.bg_dark = pop_bg
         colors.bg_float = pop_bg
         colors.bg_popup = pop_bg
-        colors.border = "#ffffff"
+        colors.border = main_border_color -- Use local literal
         colors.fg = "#d4d6c6"
       end,
 
@@ -27,7 +28,7 @@ return {
           base      = "#000000",
           black     = "#000000",
           text      = "#d4d6c6",
-          white     = "#ffffff",
+          white     = "#E0E0E0",
 
           -- COLOR CONFIG:
           pink_bright = "#f30974",
@@ -49,7 +50,7 @@ return {
           silver    = "#C0C0C0",
 
           package_color = "#7aa2f7",
-          string_color  = "#3a4261",
+          string_color  = "#5c78b6",
           darker_silver = "#B0B0B0",
         }
 
@@ -125,6 +126,7 @@ return {
         hl.LineNr = { fg = c.grey }
         hl.CursorLineNr = { fg = c.white, bold = true }
         hl.Cursor = { bg = c.cursor, fg = c.black }
+        hl.Comment = { fg = "#3a4261" }
 
 
         -- === BAGIAN 3: DASHBOARD ===
