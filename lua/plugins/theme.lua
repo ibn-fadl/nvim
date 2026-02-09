@@ -49,8 +49,8 @@ return {
           cursor    = "#FF0000",
           silver    = "#C0C0C0",
 
-          package_color = "#7aa2f7",
-          string_color  = "#5c78b6",
+          package_color = "#da70d6",
+          string_color  = "#7aa2f7",
           darker_silver = "#B0B0B0",
         }
 
