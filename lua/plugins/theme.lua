@@ -108,10 +108,12 @@ return {
 
         set({
           "WinSeparator", "VertSplit", "NeoTreeWinSeparator", "SnacksWinSeparator"
-        }, { fg = c.base, bg = c.base })
+        }, { fg = c.black, bg = c.black })
 
         hl.FloatermBorder = { bg = c.black, fg = colors.border }
         hl.TelescopeBorder = { fg = c.black }
+        hl.NeoTreeFloatBorder = { fg = c.black, bg = c.black }
+        hl.FloatBorder = { fg = c.black, bg = c.black }
         hl.LineNr = { fg = c.grey }
         hl.CursorLineNr = { fg = c.white, bold = true }
         hl.Cursor = { bg = c.cursor, fg = c.black }
