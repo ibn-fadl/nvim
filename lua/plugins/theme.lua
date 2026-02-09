@@ -76,7 +76,7 @@ return {
         set({
           "@type", "@type.definition", "@lsp.type.struct", "@lsp.type.interface",
           "@lsp.type.enum", "@lsp.type.type", "Structure",
-        }, { fg = c.pink_bright })
+        }, { fg = c.white })
 
         set({
           "Identifier", "@variable", "@variable.parameter",
@@ -86,7 +86,7 @@ return {
 
         set({ "Operator", "@operator", "Delimiter", "@punctuation.delimiter" }, { fg = c.white })
         set({ "@punctuation.bracket" }, { fg = c.white })
-        set({ "String", "Character" }, { fg = c.silver })
+        set({ "String", "Character" }, { fg = c.text })
         set({ "Constant", "@constant.builtin" }, { fg = c.pale })
 
 
@@ -111,6 +111,7 @@ return {
         }, { fg = c.base, bg = c.base })
 
         hl.FloatermBorder = { bg = c.black, fg = colors.border }
+        hl.TelescopeBorder = { fg = c.black }
         hl.LineNr = { fg = c.grey }
         hl.CursorLineNr = { fg = c.white, bold = true }
         hl.Cursor = { bg = c.cursor, fg = c.black }
