@@ -47,6 +47,10 @@ return {
           grey      = "#505050",
           cursor    = "#FF0000",
           silver    = "#C0C0C0",
+
+          package_color = "#7aa2f7",
+          string_color  = "#3a4261",
+          darker_silver = "#B0B0B0",
         }
 
         local function set(groups, opts)
@@ -58,7 +62,7 @@ return {
           "Keyword", "Statement", "Conditional", "Repeat", "Include",
           "Structure", "Define", "PreProc", "Exception",
           "@keyword", "@keyword.function", "@keyword.import", "@include"
-        }, { fg = c.blue, italic = false })
+        }, { fg = c.grey, italic = false })
 
         set({
           "Function", "@function", "@function.call", "@method", "@constructor",
@@ -66,12 +70,12 @@ return {
           "@lsp.typemod.namespace.declaration",
         }, { fg = c.white, bold = false })
 
-        set({ "@module", "@namespace", "@lsp.type.namespace" }, { fg = c.green_lime })
+        set({ "@module", "@namespace", "@lsp.type.namespace" }, { fg = c.package_color })
 
         set({
           "Type", "@type.builtin", "@lsp.type.builtinType",
           "@lsp.typemod.type.defaultLibrary", "@lsp.typemod.builtin.defaultLibrary",
-        }, { fg = c.pink_dark, italic = true })
+        }, { fg = c.darker_silver, italic = true })
 
         set({
           "@type", "@type.definition", "@lsp.type.struct", "@lsp.type.interface",
@@ -86,7 +90,7 @@ return {
 
         set({ "Operator", "@operator", "Delimiter", "@punctuation.delimiter" }, { fg = c.white })
         set({ "@punctuation.bracket" }, { fg = c.white })
-        set({ "String", "Character" }, { fg = c.text })
+        set({ "String", "Character" }, { fg = c.string_color })
         set({ "Constant", "@constant.builtin" }, { fg = c.pale })
 
 

@@ -58,7 +58,7 @@ In the name of Allah, the most Gracious, the most Merciful]],
 
   -- Disable mini.indentscope
   {
-    "echasnovski/mini.indentscope",
+    "nvim-mini/mini.indentscope",
     enabled = false,
   },
 }
