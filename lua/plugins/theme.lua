@@ -46,6 +46,7 @@ return {
           pale      = "#cebbfa",
           grey      = "#505050",
           cursor    = "#FF0000",
+          silver    = "#C0C0C0",
         }
 
         local function set(groups, opts)
@@ -84,7 +85,7 @@ return {
         }, { fg = c.text })
 
         set({ "Operator", "@operator", "Delimiter", "@punctuation.delimiter" }, { fg = c.purple })
-        set({ "@punctuation.bracket" }, { fg = c.yellow_gold })
+        set({ "@punctuation.bracket" }, { fg = c.silver })
         set({ "String", "Character" }, { fg = c.cyan })
         set({ "Constant", "@constant.builtin" }, { fg = c.pale })
 
