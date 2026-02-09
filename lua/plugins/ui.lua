@@ -44,12 +44,21 @@ In the name of Allah, the most Gracious, the most Merciful]],
           },
         },
       },
+      indent = {
+        enabled = false,
+      },
     },
   },
 
   -- Disable Bufferline (Tab Bar di atas)
   {
     "akinsho/bufferline.nvim",
+    enabled = false,
+  },
+
+  -- Disable mini.indentscope
+  {
+    "echasnovski/mini.indentscope",
     enabled = false,
   },
 }

@@ -13,4 +13,5 @@ vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:block-blinkwait700-blinkoff400-blink
 vim.opt.relativenumber = false
 vim.opt.number = true
 vim.opt.cursorline = false
+vim.opt.list = false
 
