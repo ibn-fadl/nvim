@@ -71,7 +71,7 @@ return {
           "Function", "@function", "@function.call", "@method", "@constructor",
           "Title",
           "@lsp.typemod.namespace.declaration",
-        }, { fg = c.white, bold = false })
+        }, { fg = "#FFFFFF", bold = false })
 
         set({ "@module", "@namespace", "@lsp.type.namespace" }, { fg = c.package_color })
 
