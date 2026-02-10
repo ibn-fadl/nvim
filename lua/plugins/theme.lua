@@ -12,7 +12,7 @@ return {
 
       on_colors = function(colors)
         local main_bg = "#16161e"
-        local pop_bg  = "#0d0d13"
+        local pop_bg  = "#16161e"
         local main_border_color = "#E0E0E0" -- Define local literal for border
 
         colors.bg = main_bg
@@ -146,10 +146,10 @@ return {
 
         -- === BAGIAN 4: VISUAL SELECTION ===
         -- Menggunakan warna #333333
-        hl.Visual = { bg = "#333333", fg = c.white }
+        hl.Visual = { bg = "#16161e", fg = c.white }
 
         -- Warna seleksi saat tidak aktif (lebih gelap lagi)
-        hl.VisualNOS = { bg = "#33222c", fg = c.grey }
+        hl.VisualNOS = { bg = "#16161e", fg = c.grey }
       end,
     },
   },
