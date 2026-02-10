@@ -11,7 +11,7 @@ return {
       },
 
       on_colors = function(colors)
-        local main_bg = "#0d0d13"
+        local main_bg = "#16161e"
         local pop_bg  = "#0d0d13"
         local main_border_color = "#E0E0E0" -- Define local literal for border
 
@@ -26,8 +26,8 @@ return {
 
       on_highlights = function(hl, colors)
         local c = {
-          base      = "#0d0d13",
-          black     = "#0d0d13",
+          base      = "#16161e",
+          black     = "#16161e",
           text      = "#d4d6c6",
           white     = "#E0E0E0",
 
