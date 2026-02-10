@@ -108,12 +108,12 @@ return {
         }, { bg = c.base })
         set({
           "TelescopeNormal", "TelescopeBorder"
-        }, { bg = "NONE" })
+        }, { bg = c.base })
 
         set({
           "Floaterm", "NormalFloat",
           "Pmenu", "PmenuSel", "PmenuSbar", "PmenuThumb"
-        }, { bg = "NONE" })
+        }, { bg = c.base })
 
         set({
           "WinSeparator", "VertSplit", "NeoTreeWinSeparator", "SnacksWinSeparator"

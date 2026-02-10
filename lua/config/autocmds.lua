@@ -41,9 +41,21 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "*",
   callback = function()
     -- These colors are based on the tokyonight.nvim configuration in lua/plugins/theme.lua
-    local bg_color = "#0d0d13" -- main_bg
+    local bg_color = "#16161e" -- main_bg
     local fg_color = "#d4d6c6" -- colors.fg
     vim.api.nvim_set_hl(0, "Normal", { bg = bg_color, fg = fg_color, blend = 0 })
+    -- vim.api.nvim_set_hl(0, "NormalNC", { bg = bg_color, blend = 0 }) -- Removed redundant setting
+    vim.api.nvim_set_hl(0, "SignColumn", { bg = bg_color }) -- Set SignColumn to the same background
+
+    -- Floating Windows & Popups
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = bg_color })
+    vim.api.nvim_set_hl(0, "Pmenu", { bg = bg_color })
+
+    -- Telescope Specific Overrides
+    vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = bg_color })
+    vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = bg_color })
+    vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { bg = bg_color })
+    vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { bg = bg_color })
   end,
   desc = "Ensure Normal highlight group has no blend",
 })
