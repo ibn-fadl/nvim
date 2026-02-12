@@ -51,8 +51,8 @@ return {
           silver    = "#C0C0C0",
           cyan_blue = "#2cc3df",
 
-          package_color = "#7aa2f7",
-          string_color  = "#bb9af7",
+          package_color = "#FFFFFF",
+          string_color  = "#7aa2f7",
           darker_silver = "#B0B0B0",
         }
 
@@ -91,9 +91,9 @@ return {
           "@lsp.type.property", "@lsp.type.variable", "@lsp.type.parameter"
         }, { fg = c.white })
 
-        set({ "Operator", "@operator", "Delimiter", "@punctuation.delimiter" }, { fg = c.grey })
-        set({ "@punctuation.bracket" }, { fg = c.grey })
-        set({ "String", "Character" }, { fg = c.darker_silver })
+        set({ "Operator", "@operator", "Delimiter", "@punctuation.delimiter" }, { fg = c.white })
+        set({ "@punctuation.bracket" }, { fg = c.white })
+        set({ "String", "Character" }, { fg = c.string_color })
         set({ "Constant", "@constant.builtin", "@variable.builtin" }, { fg = c.darker_silver })
 
 
@@ -146,10 +146,10 @@ return {
 
         -- === BAGIAN 4: VISUAL SELECTION ===
         -- Menggunakan warna #333333
-        hl.Visual = { bg = "#16161e", fg = c.white }
+        hl.Visual = { bg = "#333333", fg = c.white }
 
         -- Warna seleksi saat tidak aktif (lebih gelap lagi)
-        hl.VisualNOS = { bg = "#16161e", fg = c.grey }
+        hl.VisualNOS = { bg = "#333333", fg = c.grey }
       end,
     },
   },
