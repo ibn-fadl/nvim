@@ -13,21 +13,25 @@ return {
     },
     trigger_events = { "InsertLeave", "TextChanged" },
     condition = function(buf)
-      -- First, check if the buffer is still valid to prevent errors.
+      -- Use early returns to make the conditions clearer
       if not vim.api.nvim_buf_is_valid(buf) then
         return false
       end
 
-      -- Exclude special buffers and filetypes
+      -- Exclude special buffers
       local buftype = vim.api.nvim_buf_get_option(buf, "buftype")
-      local fts = { "TelescopePrompt", "NvimTree", "gitcommit", "gitrebase", "svn", "hgcommit" }
-      if
-        buftype ~= "" -- Exclude non-normal buffers
-        or vim.tbl_contains(fts, vim.bo[buf].filetype) -- Exclude specific filetypes
-      then
+      if buftype ~= "" then
         return false
       end
-      return true -- If all checks pass, allow auto-saving
+
+      -- Exclude specific filetypes
+      local fts = { "TelescopePrompt", "NvimTree", "gitcommit", "gitrebase", "svn", "hgcommit" }
+      if vim.tbl_contains(fts, vim.bo[buf].filetype) then
+        return false
+      end
+
+      -- If all checks pass, allow auto-saving
+      return true
     end,
     write_all_buffers = false,
     debounce_delay = 135,
