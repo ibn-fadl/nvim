@@ -170,71 +170,8 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     opts = function()
-      local colors = {
-        bg = "#16161e", -- Unified background color
-        fg = "#d4d6c6", -- Foreground color for text
-      }
-
-      local monolithic_theme = {
-        normal = {
-          a = { fg = colors.fg, bg = colors.bg },
-          b = { fg = colors.fg, bg = colors.bg },
-          c = { fg = colors.fg, bg = colors.bg },
-          x = { fg = colors.fg, bg = colors.bg },
-          y = { fg = colors.fg, bg = colors.bg },
-          z = { fg = colors.fg, bg = colors.bg },
-        },
-        insert = {
-          a = { fg = colors.fg, bg = colors.bg },
-          b = { fg = colors.fg, bg = colors.bg },
-          c = { fg = colors.fg, bg = colors.bg },
-          x = { fg = colors.fg, bg = colors.bg },
-          y = { fg = colors.fg, bg = colors.bg },
-          z = { fg = colors.fg, bg = colors.bg },
-        },
-        visual = {
-          a = { fg = colors.fg, bg = colors.bg },
-          b = { fg = colors.fg, bg = colors.bg },
-          c = { fg = colors.fg, bg = colors.bg },
-          x = { fg = colors.fg, bg = colors.bg },
-          y = { fg = colors.fg, bg = colors.bg },
-          z = { fg = colors.fg, bg = colors.bg },
-        },
-        replace = {
-          a = { fg = colors.fg, bg = colors.bg },
-          b = { fg = colors.fg, bg = colors.bg },
-          c = { fg = colors.fg, bg = colors.bg },
-          x = { fg = colors.fg, bg = colors.bg },
-          y = { fg = colors.fg, bg = colors.bg },
-          z = { fg = colors.fg, bg = colors.bg },
-        },
-        command = {
-          a = { fg = colors.fg, bg = colors.bg },
-          b = { fg = colors.fg, bg = colors.bg },
-          c = { fg = colors.fg, bg = colors.bg },
-          x = { fg = colors.fg, bg = colors.bg },
-          y = { fg = colors.fg, bg = colors.bg },
-          z = { fg = colors.fg, bg = colors.bg },
-        },
-        inactive = {
-          a = { fg = colors.fg, bg = colors.bg },
-          b = { fg = colors.fg, bg = colors.bg },
-          c = { fg = colors.fg, bg = colors.bg },
-          x = { fg = colors.fg, bg = colors.bg },
-          y = { fg = colors.fg, bg = colors.bg },
-          z = { fg = colors.fg, bg = colors.bg },
-        },
-      }
-      require("lualine.themes").monolithic = monolithic_theme
       return {
-        options = {
-          theme = "monolithic",
-        },
-        sections = {
-          -- Clear any custom functions that might be added to lualine_x
-          -- if you want to explicitly keep something, re-add it here.
-          lualine_x = { "encoding", "fileformat", "filetype" },
-        },
+        --[[add your custom lualine config here]]
       }
     end,
   },

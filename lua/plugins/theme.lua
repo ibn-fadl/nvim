@@ -11,8 +11,8 @@ return {
       },
 
       on_colors = function(colors)
-        local main_bg = "#16161e"
-        local pop_bg  = "#16161e"
+        local main_bg = "#010101"
+        local pop_bg  = "#010101"
         local main_border_color = "#E0E0E0" -- Define local literal for border
 
         colors.bg = main_bg
@@ -26,8 +26,8 @@ return {
 
       on_highlights = function(hl, colors)
         local c = {
-          base      = "#16161e",
-          black     = "#16161e",
+          base      = "#010101",
+          black     = "#010101",
           text      = "#d4d6c6",
           white     = "#E0E0E0",
 
@@ -108,12 +108,12 @@ return {
         }, { bg = c.base })
         set({
           "TelescopeNormal", "TelescopeBorder"
-        }, { bg = c.base })
+        }, { bg = "NONE" })
 
         set({
           "Floaterm", "NormalFloat",
           "Pmenu", "PmenuSel", "PmenuSbar", "PmenuThumb"
-        }, { bg = c.base })
+        }, { bg = "NONE" })
 
         set({
           "WinSeparator", "VertSplit", "NeoTreeWinSeparator", "SnacksWinSeparator"
