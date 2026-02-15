@@ -5,9 +5,7 @@ return {
     "folke/snacks.nvim",
     opts = {
       dashboard = {
-        preset = {
-          header = dashboard.basmalahArabic,
-        },
+        preset = {},
       },
       picker = {
         backdrop = false,
@@ -19,6 +17,7 @@ return {
         sources = {
           explorer = {
             hidden = true,
+            ignored = true,
             layout = {
               layout = {
                 position = "right",
@@ -35,6 +34,7 @@ return {
           },
           files = {
             hidden = true,
+            ignored = true,
           },
         },
       },
